@@ -98,6 +98,11 @@ namespace Kimbrary
                 Minute = removedMinutes;
             }
         }
+		
+		public void Tick()
+		{
+			AddMinutes(1);
+		}
 
         public int GetDayDifference()
         {
@@ -106,7 +111,14 @@ namespace Kimbrary
 
         public override string ToString()
         {
-            return $"{Hour}:{Minute}";
+			string stringFormat = $"{Hour}:";
+			
+			if (Minute < 10)
+			{
+				stringFormat += "0";
+			}
+			
+            return stringFormat + $"{Minute}";
         }
     }
 }
