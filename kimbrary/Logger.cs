@@ -17,7 +17,7 @@ namespace Kimbrary
 
         public static class Logger
         {
-            public static string LogFilePath { get; } = @"c:\temp\avenla.hosting.Logs\StationaryLogs.log";
+            public static string LogFilePath { get; } = @"c/logpath/goes/here";
 
             public static string? LogMessage { get; private set; } = null;
             public static LogType LogType { get; private set; } = LogType.None;
@@ -60,7 +60,7 @@ namespace Kimbrary
                 }
                 else
                 {
-                    throw new NullReferenceException("Logger not initialized yet. Use Set method to initialize the logger.");
+                    throw new NullReferenceException("Logger not initialized yet. Use Initialize method to initialize the logger.");
                 }
             }
 
@@ -99,38 +99,6 @@ namespace Kimbrary
                     throw new ArgumentException("None of the given arguments can be null, empty or None.");
                 }
             }
-
-            //public static void WriteUsingExternalLogger<T>(ILogger<T> _logger)
-            //{
-            //    if (LogMessage != null && LogType != LogType.None)
-            //    {
-            //        switch (LogType)
-            //        {
-            //            case LogType.Critical:
-            //                _logger.LogCritical(LogMessage);
-            //                break;
-            //            case LogType.Debug:
-            //                _logger.LogDebug(LogMessage);
-            //                break;
-            //            case LogType.Error:
-            //                _logger.LogError(LogMessage);
-            //                break;
-            //            case LogType.Information:
-            //                _logger.LogInformation(LogMessage);
-            //                break;
-            //            case LogType.Trace:
-            //                _logger.LogTrace(LogMessage);
-            //                break;
-            //            case LogType.Warning:
-            //                _logger.LogWarning(LogMessage);
-            //                break;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        throw new NullReferenceException("Logger not initialized yet. Use Set method to initialize the logger.");
-            //    }
-            //}
         }
     }
 }
