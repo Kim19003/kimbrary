@@ -4,6 +4,18 @@ namespace Kimbrary
     {
         public static class Extensions
         {
+			public static string? GetPart(this string value, string item)
+			{
+				try
+				{
+					return value.Substring(value.IndexOf(item), item.Length);
+				}
+				catch
+				{
+					return null;
+				}
+			}
+			
             public static bool ContainsAny(this string value, params string[] items)
             {
                 foreach (string item in items)
