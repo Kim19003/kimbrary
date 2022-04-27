@@ -4,6 +4,36 @@ namespace Kimbrary
     {
         public static class Extensions
         {
+            public static T[] GetLatestElements<T>(this T[] array, int maxLimitOfElements)
+            {
+                List<T> latestLines = new();
+
+                if (maxLimitOfElements >= 0)
+                {
+                    for (int i = (array.Length > maxLimitOfElements ? array.Length - maxLimitOfElements : 0); i < array.Length; i++)
+                    {
+                        latestLines.Add(array[i]);
+                    }
+                }
+
+                return latestLines.ToArray();
+            }
+
+            public static List<T> GetLatestElements<T>(this List<T>array, int maxLimitOfElements)
+            {
+                List<T> latestLines = new();
+
+                if (maxLimitOfElements >= 0)
+                {
+                    for (int i = (array.Count > maxLimitOfElements ? array.Count - maxLimitOfElements : 0); i < array.Count; i++)
+                    {
+                        latestLines.Add(array[i]);
+                    }
+                }
+
+                return latestLines;
+            }
+
 			public static string? GetPart(this string value, string item)
 			{
 				try
