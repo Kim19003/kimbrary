@@ -4,6 +4,19 @@ namespace Kimbrary
     {
         public static class Extensions
         {
+            public static int IndexOfAny(this string value, params string[] items)
+            {
+                foreach (var item in items)
+                {
+                    if (value.Contains(item))
+                    {
+                        return value.IndexOf(item);
+                    }
+                }
+
+                return -1;
+            }
+
             public static T[] GetLatestElements<T>(this T[] array, int maxLimitOfElements)
             {
                 List<T> latestLines = new();
