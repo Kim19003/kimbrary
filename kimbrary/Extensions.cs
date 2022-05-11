@@ -170,7 +170,7 @@ namespace Kimbrary
                     {
                         foreach (T item in items)
                         {
-                            if (element.Equals(item))
+                            if (element != null && element.Equals(item))
                             {
                                 equalItems++;
                             }

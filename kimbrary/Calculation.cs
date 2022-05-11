@@ -2,7 +2,7 @@ namespace Kimbrary
 {
     namespace Calculation
     {
-        public class Calculation
+        public static class Calculation
         {
             public static int GetProgressInPercents(double currentValue, double endValue)
             {

@@ -4,7 +4,7 @@ namespace Kimbrary
 {
     namespace Expressions
     {
-        public class Expressions
+        public static class Expressions
         {
             public static bool IsTrueAny(params bool?[] items)
             {
@@ -24,6 +24,19 @@ namespace Kimbrary
             public static bool IsNullOrFalseAny(params bool?[] items)
             {
                 return items.Contains(null) || items.Contains(false);
+            }
+
+            public static bool IsNullAny<T>(params T?[] items)
+            {
+                foreach (var item in items)
+                {
+                    if (item == null)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
     }
