@@ -1,4 +1,7 @@
 using System.Linq;
+using System.IO;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Kimbrary
 {
@@ -6,6 +9,21 @@ namespace Kimbrary
     {
         public static class Expressions
         {
+            public static async Task<string> ReadAsStringAsync(this IFormFile file)
+            {
+                StringBuilder result = new();
+
+                using (StreamReader streamReader = new(file.OpenReadStream()))
+                {
+                    while (streamReader.Peek() >= 0)
+                    {
+                        result.AppendLine(await streamReader.ReadLineAsync());
+                    }
+                }
+
+                return result.ToString();
+            }
+
             public static bool IsTrueAny(params bool?[] items)
             {
                 return items.Contains(true);
