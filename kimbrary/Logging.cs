@@ -7,6 +7,7 @@ namespace Kimbrary
         public enum LogType
         {
             None,
+			Successful,
             Critical,
             Debug,
             Error,
@@ -242,6 +243,8 @@ namespace Kimbrary
 			{
 				switch (logType)
 				{
+					case LogType.Successful:
+                    	return "SUCCESSFUL";
 					case LogType.Critical:
 						return "CRITICAL";
 					case LogType.Debug:
