@@ -67,11 +67,11 @@ namespace Kimbrary
 
 				if (!string.IsNullOrEmpty(_logType))
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {Log}\n");
+					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {Log}\n");
 				}
 				else
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {Log}\n");
+					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {Log}\n");
 				}
 			}
 
@@ -84,11 +84,11 @@ namespace Kimbrary
 
 				if (!string.IsNullOrEmpty(_logType))
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
 				}
 				else
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
 				}
 			}
 
@@ -101,11 +101,11 @@ namespace Kimbrary
 
 				if (!string.IsNullOrEmpty(_logType))
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
 				}
 				else
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
 				}
 			}
 
@@ -118,11 +118,11 @@ namespace Kimbrary
 
 				if (!string.IsNullOrEmpty(_logType))
 				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
 				}
 				else
 				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
 				}
 			}
 
@@ -135,11 +135,11 @@ namespace Kimbrary
 
 				if (!string.IsNullOrEmpty(_logType))
 				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
 				}
 				else
 				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
 				}
 			}
 
@@ -198,7 +198,7 @@ namespace Kimbrary
 							{
 								try
 								{
-									DateTime oldLogDateTime = Convert.ToDateTime(oldLog[(oldLog.IndexOf("[") + 1)..(oldLog.IndexOf("(TD:") - 1)]);
+									DateTime oldLogDateTime = Convert.ToDateTime(oldLog[(oldLog.IndexOf("[") + 1)..(oldLog.IndexOf("(UTC-TD:") - 1)]);
 
 									if (oldLogDateTime > olderThan)
 									{
@@ -244,7 +244,7 @@ namespace Kimbrary
 				switch (logType)
 				{
 					case LogType.Successful:
-                    	return "SUCCESSFUL";
+						return "SUCCESSFUL";
 					case LogType.Critical:
 						return "CRITICAL";
 					case LogType.Debug:
