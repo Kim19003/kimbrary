@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace Kimbrary
 {
-    namespace Expressions
+    namespace Methods
     {
-        public static class Expressions
+        public static class Methods
         {
             public static async Task<string> ReadAsStringAsync(this IFormFile file)
             {
