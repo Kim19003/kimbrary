@@ -17,6 +17,16 @@ namespace Kimbrary
                 {
                     Value = value;
                 }
+
+                public void SetValue(T value)
+                {
+                    Value = value;
+                }
+
+                public T? GetValue()
+                {
+                    return Value;
+                }
             }
         }
     }
