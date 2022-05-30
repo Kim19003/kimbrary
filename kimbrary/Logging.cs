@@ -16,137 +16,98 @@ namespace Kimbrary
             Warning
         }
 
-		public static class KLogger
+		public class KLogger
 		{
-			public static string LogFilePath { get; private set; } = @"C:\Program Files\KLogs.log";
-			public static string? Log { get; private set; } = null;
-			public static LogType LogType { get; private set; } = LogType.None;
+			public string LogFilePath { get; set; } = "";
 
-			/// <summary>
-			/// Initialize the logger.
-			/// </summary>
-			public static void Initialize(string log)
+			public KLogger()
 			{
-				Log = log;
+
 			}
 
-			/// <summary>
-			/// Initialize the logger.
-			/// </summary>
-			public static void Initialize(string log, LogType logType)
+			public KLogger(string logFilePath)
 			{
-				Log = log;
-				LogType = logType;
-			}
-
-			/// <summary>
-			/// Initialize the logger.
-			/// </summary>
-			public static void Initialize(string log, string logFilePath)
-			{
-				Log = log;
-				LogFilePath = logFilePath;
-			}
-
-			/// <summary>
-			/// Initialize the logger.
-			/// </summary>
-			public static void Initialize(string log, LogType logType, string logFilePath)
-			{
-				Log = log;
-				LogType = logType;
 				LogFilePath = logFilePath;
 			}
 
 			/// <summary>
 			/// Write a new log.
 			/// </summary>
-			public static void DoLog()
+			public void DoLog(string log)
 			{
-				string _logType = GetLogTypeAsString(LogType);
-
-				if (!string.IsNullOrEmpty(_logType))
-				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {Log}\n");
-				}
-				else
-				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {Log}\n");
-				}
-			}
-
-			/// <summary>
-			/// Write a new log.
-			/// </summary>
-			public static void DoLog(string log)
-			{
-				string _logType = GetLogTypeAsString(LogType);
-
-				if (!string.IsNullOrEmpty(_logType))
-				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
-				}
-				else
+				try
 				{
 					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
 				}
+				catch (Exception ex)
+				{
+					throw new Exception($"Error writing the log: {ex.Message}");
+				}
 			}
 
 			/// <summary>
 			/// Write a new log.
 			/// </summary>
-			public static void DoLog(string log, LogType logType)
+			public void DoLog(string log, LogType logType)
 			{
 				string _logType = GetLogTypeAsString(logType);
 
-				if (!string.IsNullOrEmpty(_logType))
+				try
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					if (!string.IsNullOrEmpty(_logType))
+					{
+						System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					}
+					else
+					{
+						System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					}
 				}
-				else
+				catch (Exception ex)
 				{
-					System.IO.File.AppendAllText(LogFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
-				}
-			}
-
-			/// <summary>
-			/// Write a new log.
-			/// </summary>
-			public static void DoLog(string log, string logFilePath)
-			{
-				string _logType = GetLogTypeAsString(LogType);
-
-				if (!string.IsNullOrEmpty(_logType))
-				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
-				}
-				else
-				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					throw new Exception($"Error writing the log: {ex.Message}");
 				}
 			}
 
 			/// <summary>
 			/// Write a new log.
 			/// </summary>
-			public static void DoLog(string log, LogType logType, string logFilePath)
+			public void DoLog(string log, LogType logType, string logFilePath)
 			{
 				string _logType = GetLogTypeAsString(logType);
 
-				if (!string.IsNullOrEmpty(_logType))
+				try
 				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					if (!string.IsNullOrEmpty(_logType))
+					{
+						System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour}) {_logType}] {log}\n");
+					}
+					else
+					{
+						System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					}
 				}
-				else
+				catch (Exception ex)
 				{
-					System.IO.File.AppendAllText(logFilePath, $"[{DateTime.Now} (UTC-TD: {DateTime.Now.Hour - DateTime.UtcNow.Hour})] {log}\n");
+					throw new Exception($"Error writing the log: {ex.Message}");
+				}
+			}
+
+			/// <summary>
+			/// Clear the logs file.
+			/// </summary>
+			public void ClearLogsFile()
+			{
+				if (System.IO.File.Exists(LogFilePath))
+				{
+					System.IO.File.WriteAllText(LogFilePath, "");
 				}
 			}
 
 			/// <summary>
 			/// Remove old logs from the logs file.
 			/// </summary>
-			public static void RunGarbageCleaner(int maxAmountOfLogs)
+			public void RunGarbageCleaner(int maxAmountOfLogs)
 			{
 				if (!string.IsNullOrEmpty(LogFilePath))
 				{
@@ -182,7 +143,7 @@ namespace Kimbrary
 			/// <summary>
 			/// Remove old logs from the logs file.
 			/// </summary>
-			public static void RunGarbageCleaner(DateTime olderThan)
+			public void RunGarbageCleaner(DateTime olderThan)
 			{
 				if (!string.IsNullOrEmpty(LogFilePath))
 				{
@@ -239,7 +200,7 @@ namespace Kimbrary
 				}
 			}
 
-			private static string GetLogTypeAsString(LogType logType)
+			private string GetLogTypeAsString(LogType logType)
 			{
 				switch (logType)
 				{
