@@ -7,6 +7,7 @@ namespace Kimbrary
             public class ValueHolder<T>
             {
                 public T? Value { get; set; }
+                public List<T?> ValuePool { get; } = new();
 
                 public ValueHolder()
                 {
@@ -16,16 +17,6 @@ namespace Kimbrary
                 public ValueHolder(T value)
                 {
                     Value = value;
-                }
-
-                public void SetValue(T value)
-                {
-                    Value = value;
-                }
-
-                public T? GetValue()
-                {
-                    return Value;
                 }
             }
         }
