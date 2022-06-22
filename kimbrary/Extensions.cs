@@ -30,47 +30,77 @@ namespace Kimbrary
                 return -1;
             }
 
-            public static T[] GetLatestElements<T>(this T[] array, int maxLimitOfElements)
+	public static T[] GetLatestElements<T>(this T[] array, int maxLimitOfElements)
+        {
+            List<T> latestElements = new();
+
+            if (maxLimitOfElements >= 0)
             {
-                List<T> latestLines = new();
-
-                if (maxLimitOfElements >= 0)
+                for (int i = (array.Length > maxLimitOfElements ? array.Length - maxLimitOfElements : 0); i < array.Length; i++)
                 {
-                    for (int i = (array.Length > maxLimitOfElements ? array.Length - maxLimitOfElements : 0); i < array.Length; i++)
-                    {
-                        latestLines.Add(array[i]);
-                    }
+                    latestElements.Add(array[i]);
                 }
-
-                return latestLines.ToArray();
             }
 
-            public static List<T> GetLatestElements<T>(this List<T>array, int maxLimitOfElements)
+            return latestElements.ToArray();
+        }
+
+        public static List<T> GetLatestElements<T>(this List<T>list, int maxLimitOfElements)
+        {
+            List<T> latestElements = new();
+
+            if (maxLimitOfElements >= 0)
             {
-                List<T> latestLines = new();
-
-                if (maxLimitOfElements >= 0)
+                for (int i = (list.Count > maxLimitOfElements ? list.Count - maxLimitOfElements : 0); i < list.Count; i++)
                 {
-                    for (int i = (array.Count > maxLimitOfElements ? array.Count - maxLimitOfElements : 0); i < array.Count; i++)
-                    {
-                        latestLines.Add(array[i]);
-                    }
+                    latestElements.Add(list[i]);
                 }
-
-                return latestLines;
             }
 
-			public static string? GetPart(this string value, string item)
-			{
-				try
-				{
-					return value.Substring(value.IndexOf(item), item.Length);
-				}
-				catch
-				{
-					return null;
-				}
-			}
+            return latestElements;
+        }
+
+        public static T[] GetOldestElements<T>(this T[] array, int maxLimitOfElements)
+        {
+            List<T> latestElements = new();
+
+            if (maxLimitOfElements >= 0)
+            {
+                for (int i = 0; i < (array.Length > maxLimitOfElements ? maxLimitOfElements : array.Length); i++)
+                {
+                    latestElements.Add(array[i]);
+                }
+            }
+
+            return latestElements.ToArray();
+        }
+
+        public static List<T> GetOldestElements<T>(this List<T> list, int maxLimitOfElements)
+        {
+            List<T> latestElements = new();
+
+            if (maxLimitOfElements >= 0)
+            {
+                for (int i = 0; i < (list.Count > maxLimitOfElements ? maxLimitOfElements : list.Count); i++)
+                {
+                    latestElements.Add(list[i]);
+                }
+            }
+
+            return latestElements;
+        }
+
+	public static string? GetPart(this string value, string item)
+	{
+		try
+		{
+			return value.Substring(value.IndexOf(item), item.Length);
+		}
+		catch
+		{
+			return null;
+		}
+	}
 			
             public static bool ContainsAny(this string value, params string[] items)
             {
