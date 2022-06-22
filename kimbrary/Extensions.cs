@@ -62,32 +62,32 @@ namespace Kimbrary
 
         public static T[] GetOldestElements<T>(this T[] array, int maxLimitOfElements)
         {
-            List<T> latestElements = new();
+            List<T> oldestElements = new();
 
             if (maxLimitOfElements >= 0)
             {
                 for (int i = 0; i < (array.Length > maxLimitOfElements ? maxLimitOfElements : array.Length); i++)
                 {
-                    latestElements.Add(array[i]);
+                    oldestElements.Add(array[i]);
                 }
             }
 
-            return latestElements.ToArray();
+            return oldestElements.ToArray();
         }
 
         public static List<T> GetOldestElements<T>(this List<T> list, int maxLimitOfElements)
         {
-            List<T> latestElements = new();
+            List<T> oldestElements = new();
 
             if (maxLimitOfElements >= 0)
             {
                 for (int i = 0; i < (list.Count > maxLimitOfElements ? maxLimitOfElements : list.Count); i++)
                 {
-                    latestElements.Add(list[i]);
+                    oldestElements.Add(list[i]);
                 }
             }
 
-            return latestElements;
+            return oldestElements;
         }
 
 	public static string? GetPart(this string value, string item)
