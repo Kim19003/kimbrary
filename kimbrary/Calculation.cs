@@ -1,27 +1,24 @@
-namespace Kimbrary
+namespace Kimbrary.Calculation
 {
-    namespace Calculation
+    public static class Progress
     {
-        public static class Calculation
+        public static int GetProgressInPercents(double currentValue, double endValue)
         {
-            public static int GetProgressInPercents(double currentValue, double endValue)
+            if (currentValue >= endValue)
             {
-                if (currentValue >= endValue)
+                return 100;
+            }
+            else
+            {
+                double rawPercent = currentValue / endValue * 100;
+
+                if (rawPercent > 99.0 && rawPercent < 100.0)
                 {
-                    return 100;
+                    return Convert.ToInt32(rawPercent.ToString()[..rawPercent.ToString().IndexOf(',')]);
                 }
                 else
                 {
-                    double rawPercent = currentValue / endValue * 100;
-
-                    if (rawPercent > 99.0 && rawPercent < 100.0)
-                    {
-                        return Convert.ToInt32(rawPercent.ToString()[..rawPercent.ToString().IndexOf(',')]);
-                    }
-                    else
-                    {
-                        return Convert.ToInt32(rawPercent);
-                    }
+                    return Convert.ToInt32(rawPercent);
                 }
             }
         }

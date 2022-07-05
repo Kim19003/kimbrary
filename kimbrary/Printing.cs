@@ -1,4 +1,3 @@
-
 namespace Kimbrary.Printing
 {
     public static class Print
