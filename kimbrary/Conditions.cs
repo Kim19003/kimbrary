@@ -1,7 +1,6 @@
 using System.Linq;
 using System.IO;
 using System.Text;
-using Microsoft.AspNetCore.Http;
 
 namespace Kimbrary.Conditions
 {
